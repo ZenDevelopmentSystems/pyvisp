@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+
+list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMake)
+
+ADD_SUBDIRECTORY(_visp)
+ADD_SUBDIRECTORY(python)
