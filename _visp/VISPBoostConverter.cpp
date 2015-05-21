@@ -1,6 +1,9 @@
+#include <png.h>
+
 #include "VISPBoostConverter.h"
 
 #include <visp/vpConvert.h>
+#include <visp/vpImageConvert.h>
 
 template<class T>
 list std_vector_to_py_list(const std::vector<T>& v)
@@ -23,6 +26,18 @@ list visp_vector_to_py_list(const std::vector<T> &v)
   return l;
 }
 
+cv::Mat VISPConverter::fromVpImage(const vpImage<unsigned char> &I) {
+  cv::Mat img;
+  vpImageConvert::convert(I, img);
+  return img;
+}
+
+cv::Mat VISPConverter::fromVpImage(const vpImage<vpRGBa> &I) {
+  cv::Mat img;
+  vpImageConvert::convert(I, img);
+  return img;
+}
+
 list VISPConverter::convertToBoost(const vpImagePoint &from) {
   cv::Point2f to;
   vpConvert::convertToOpenCV(from, to);
@@ -42,6 +57,15 @@ list VISPConverter::convertToBoost(const vpRect &from) {
   l.append(from.getHeight());
 
   return l;
+}
+
+list VISPConverter::convertToBoost(const vpHomogeneousMatrix &cMo) {
+  vpHomogeneousMatrix mine(cMo);
+
+  std::vector<double> v;
+  mine.convert(v);
+
+  return std_vector_to_py_list(v);
 }
 
 list VISPConverter::convertToBoost(const std::vector<vpImagePoint> &from) {

@@ -3,6 +3,7 @@
 #include "CVBoostConverter.hpp"
 
 #include "detector.h"
+#include "tracker.h"
 
 static void init_ar()
 {
@@ -32,5 +33,13 @@ BOOST_PYTHON_MODULE(_visp)
 
   class_<DetectorQRCode>("DetectorQRCode")
     .def("detect", &DetectorQRCode::detect)
+  ;
+
+  // Object Tracking
+  class_<VispMbObjectTracker>("VispMbObjectTracker",
+                              init<std::string, std::string>())
+    .def("_init_from_points", &VispMbObjectTracker::initFromPoints)
+    .def("track", &VispMbObjectTracker::track)
+    .def("_get_pose", &VispMbObjectTracker::getPose)
   ;
 }

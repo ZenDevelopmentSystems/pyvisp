@@ -9,7 +9,7 @@ FIND_PACKAGE(VISP REQUIRED)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS} ${PYTHON_NUMPY_INCLUDE_DIR} ${VISP_INCLUDE_DIRS})
 LINK_LIBRARIES(${Boost_LIBRARIES} ${PYTHON_LIBRARIES} ${OpenCV_LIBS} ${VISP_LIBRARIES})
 
-PYTHON_ADD_MODULE(_visp _visp.cpp detector.cpp VISPBoostConverter.cpp)
+PYTHON_ADD_MODULE(_visp _visp.cpp detector.cpp tracker.cpp VISPBoostConverter.cpp dummyDisplayOpenCV.cpp)
 
 execute_process ( COMMAND python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 install(TARGETS _visp LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES})
