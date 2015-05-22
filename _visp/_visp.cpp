@@ -43,5 +43,12 @@ BOOST_PYTHON_MODULE(_visp)
     .def("track", &VispMbObjectTracker::track)
     .def("get_pose", &VispMbObjectTracker::getPose)
   ;
+
+  // Object Detection
+  class_<VispObjectKeypointDetector>("ObjectKeypointDetector",
+                                     init<std::string>())
+    .def("load_learning_data", &VispObjectKeypointDetector::loadLearningData)
+    .def("train_and_save", &VispObjectKeypointDetector::trainAndSave)
+    .def("detect", &VispObjectKeypointDetector::detect)
   ;
 }

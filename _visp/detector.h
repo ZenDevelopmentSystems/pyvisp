@@ -5,6 +5,10 @@
 #include <opencv2/core/core.hpp>
 
 #include <visp/vpDetectorQRCode.h>
+#include <visp/vpMbEdgeTracker.h>
+#include <visp/vpKeyPoint.h>
+
+#include "tracker.h"
 
 using namespace cv;
 using namespace boost::python;
@@ -24,6 +28,23 @@ class VispQRCodeDetector {
 
 private:
   vpDetectorQRCode detector;
+};
+
+class VispObjectKeypointDetector {
+public:
+  VispObjectKeypointDetector(const std::string &detector);
+
+  void loadLearningData(const std::string &filename);
+
+  bool trainAndSave(VispMbObjectTracker &tracker,
+                    const cv::Mat &img,
+                    const std::string &filename);
+
+  list detect(const cv::Mat &img);
+
+private:
+  vpKeyPoint keypoint_learning;
+  vpCameraParameters cam;
 };
 
 #endif // VISP_DETECTOR_H

@@ -3,6 +3,8 @@ import numpy
 
 import _visp
 
+from .utils import Pose
+
 
 class QRCodeDetector(_visp.QRCodeDetector):
     def detect(self, img):
@@ -35,3 +37,17 @@ class QRCode(object):
     @property
     def polygon(self):
         return numpy.array(self._code.polygon)
+
+
+class ObjectKeypointDetector(_visp.ObjectKeypointDetector):
+    def __init__(self, detector, learning_data=None):
+        _visp.ObjectKeypointDetector.__init__(self, detector)
+
+        if learning_data is not None:
+            _visp.ObjectKeypointDetector.load_learning_data(self, learning_data)
+
+    def detect(self, img):
+        pose = _visp.ObjectKeypointDetector.detect(self, img)
+
+        if pose:
+            return Pose(pose)
