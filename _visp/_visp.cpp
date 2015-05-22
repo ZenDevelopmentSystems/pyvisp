@@ -36,10 +36,12 @@ BOOST_PYTHON_MODULE(_visp)
   ;
 
   // Object Tracking
-  class_<VispMbObjectTracker>("VispMbObjectTracker",
+  class_<VispMbObjectTracker>("MbObjectTracker",
                               init<std::string, std::string>())
-    .def("_init_from_points", &VispMbObjectTracker::initFromPoints)
+    .def("init_from_points", &VispMbObjectTracker::initFromPoints)
+
     .def("track", &VispMbObjectTracker::track)
-    .def("_get_pose", &VispMbObjectTracker::getPose)
+    .def("get_pose", &VispMbObjectTracker::getPose)
+  ;
   ;
 }

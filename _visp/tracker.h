@@ -16,13 +16,8 @@ class VispMbObjectTracker {
     void initFromPoints(const cv::Mat &img, const std::string &initPoints);
 
     cv::Mat track(const cv::Mat &img);
-
-    void setPose(const cv::Mat &img, const list &pose);
-
     list getPose();
-    list getKltPoints();
 
-  private:
     vpMbEdgeKltTracker tracker;
     vpHomogeneousMatrix cMo;
     vpCameraParameters cam;

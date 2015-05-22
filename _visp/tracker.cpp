@@ -9,6 +9,8 @@
 VispMbObjectTracker::VispMbObjectTracker(const std::string &conf,
                                          const std::string &model) {
   tracker.loadConfigFile(conf);
+  tracker.getCameraParameters(cam);
+
   tracker.loadModel(model);
   tracker.setDisplayFeatures(true);
 }

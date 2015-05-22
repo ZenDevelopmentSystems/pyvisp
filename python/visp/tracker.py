@@ -1,30 +1,20 @@
-import numpy
-
-from _visp import VispMbObjectTracker
+import _visp
 
 from .utils import Pose
 
 
-class ModelBasedObjectTracker(VispMbObjectTracker):
-    def __init__(self, obj_conf, obj_model, obj_init_pts):
-        VispMbObjectTracker.__init__(self, obj_conf, obj_model)
-
-        self._initialized = False
-        self._init_pts = obj_init_pts
-
+class ModelBasedObjectTracker(_visp.MbObjectTracker):
     def track(self, img):
-        if not self._initialized:
-            self._init_from_points(img, self._init_pts)
-            self._initialized = True
-
-        success = True
+        success = False
         try:
-            img = VispMbObjectTracker.track(self, img)
+            img = _visp.MbObjectTracker.track(self, img)
+            success = True
+
         except RuntimeError:
-            success = False
+            pass
 
         return success, img
 
     @property
     def pose(self):
-        return Pose(self._get_pose())
+        return Pose(self.get_pose())

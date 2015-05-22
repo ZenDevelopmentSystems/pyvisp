@@ -10,7 +10,8 @@ res = 640, 480
 if __name__ == '__main__':
     cap = cv2.VideoCapture('teabox-demo-2.mov')
 
-    tracker = ModelBasedObjectTracker('teabox.xml', 'teabox.cao', 'teabox.init')
+    tracker = ModelBasedObjectTracker('teabox.xml', 'teabox.cao')
+    tracker.init_from_points(cv2.imread('teabox.png'), 'teabox.init')
 
     dt = []
 
