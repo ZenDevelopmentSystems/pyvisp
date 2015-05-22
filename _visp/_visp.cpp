@@ -31,8 +31,8 @@ BOOST_PYTHON_MODULE(_visp)
     .def_readonly("bounding_box", &QRCode::bounding_box)
   ;
 
-  class_<DetectorQRCode>("DetectorQRCode")
-    .def("detect", &DetectorQRCode::detect)
+  class_<VispQRCodeDetector>("QRCodeDetector")
+    .def("detect", &VispQRCodeDetector::detect)
   ;
 
   // Object Tracking

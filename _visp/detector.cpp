@@ -7,10 +7,10 @@
 #include "VISPBoostConverter.h"
 
 
-DetectorQRCode::DetectorQRCode() {
+VispQRCodeDetector::VispQRCodeDetector() {
 }
 
-list DetectorQRCode::detect(const cv::Mat &img) {
+list VispQRCodeDetector::detect(const cv::Mat &img) {
   vpImage<unsigned char> I;
   vpImageConvert::convert(img, I);
 

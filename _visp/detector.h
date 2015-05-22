@@ -16,9 +16,9 @@ struct QRCode {
     list bounding_box;
 };
 
-class DetectorQRCode {
+class VispQRCodeDetector {
   public:
-    DetectorQRCode();
+    VispQRCodeDetector();
 
     list detect(const cv::Mat &img);
 

@@ -4,9 +4,9 @@ import numpy
 import _visp
 
 
-class QRCodeDetector(_visp.DetectorQRCode):
+class QRCodeDetector(_visp.QRCodeDetector):
     def detect(self, img):
-        return [QRCode(c) for c in _visp.DetectorQRCode.detect(self, img)]
+        return [QRCode(c) for c in _visp.QRCodeDetector.detect(self, img)]
 
 
 class QRCode(object):
