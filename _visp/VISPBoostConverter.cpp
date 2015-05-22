@@ -8,10 +8,11 @@
 template<class T>
 list std_vector_to_py_list(const std::vector<T>& v)
 {
-    object get_iter = iterator<std::vector<T> >();
-    object iter = get_iter(v);
-    list l(iter);
-    return l;
+  list l;
+  typename std::vector<T>::const_iterator it;
+  for (it = v.begin(); it != v.end(); ++it)
+    l.append(*it);
+  return l;
 }
 
 template<class T>
