@@ -24,6 +24,19 @@ void VispMbObjectTracker::initFromPoints(const cv::Mat &img,
   tracker.initFromPoints(I, initPoints);
 }
 
+void VispMbObjectTracker::initFromPose(const cv::Mat &img, const list &pose) {
+  vpImage<unsigned char> I;
+  vpImageConvert::convert(img, I);
+
+  std::vector<double> v;
+  for (int i=0; i < len(pose); i++) {
+    v.push_back(extract<double>(pose[i]));
+  }
+  vpHomogeneousMatrix cMo(v);
+
+  tracker.setPose(I, cMo);
+}
+
 cv::Mat VispMbObjectTracker::track(const cv::Mat &img) {
   vpImage<unsigned char> I;
   vpImageConvert::convert(img, I);

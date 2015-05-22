@@ -14,6 +14,7 @@ class VispMbObjectTracker {
                         const std::string &model);
 
     void initFromPoints(const cv::Mat &img, const std::string &initPoints);
+    void initFromPose(const cv::Mat &img, const list &pose);
 
     cv::Mat track(const cv::Mat &img);
     list getPose();
