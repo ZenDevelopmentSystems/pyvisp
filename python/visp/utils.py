@@ -5,6 +5,9 @@ class Pose(object):
     def __init__(self, data):
         self._pose = numpy.array(data).reshape(3, 4)
 
+    def __repr__(self):
+        return repr(self._pose)
+
     @property
     def pose(self):
         return self._pose

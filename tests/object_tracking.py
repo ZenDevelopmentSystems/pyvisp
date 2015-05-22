@@ -23,6 +23,8 @@ if __name__ == '__main__':
         success, img = tracker.track(img)
         end = time.time()
 
+        print(tracker.pose.translation_vector)
+
         dt.append(end - start)
         if len(dt) == 20:
             dt = array(dt) * 1000
