@@ -1,3 +1,4 @@
+#include <png.h>
 #include <boost/python.hpp>
 
 #include "CVBoostConverter.hpp"
